@@ -2,7 +2,8 @@ name: "Quicktype Action"
 description: "Generate code from JSON schema using quicktype"
 
 branding:
-  icon: "books"
+  label: "Quicktype"
+  icon: "book"
   color: "blue"
 
 inputs:
