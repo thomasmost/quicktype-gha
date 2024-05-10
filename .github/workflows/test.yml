@@ -15,4 +15,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bindings
-          path: ./test.ts,./test.rs
+          path: ./test.ts
