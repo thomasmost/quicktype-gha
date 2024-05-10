@@ -1,0 +1,18 @@
+name: "Quicktype Action"
+description: "Generate code from JSON schema using quicktype"
+
+branding:
+  icon: "books"
+  color: "blue"
+
+inputs:
+  source-file:
+    description: "the file containing the JSON schema"
+    required: true
+  out-langs:
+    description: "a comma separates list of output langs to generate"
+    required: true
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
