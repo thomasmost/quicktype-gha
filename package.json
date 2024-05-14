@@ -1,6 +1,6 @@
 {
   "name": "quicktype-gha",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "packageManager": "pnpm@9.1.0",
@@ -19,10 +19,10 @@
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
     "@vercel/ncc": "^0.38.1",
-    "quicktype-core": "^23.0.158"
+    "quicktype-core": "^23.0.162"
   },
   "devDependencies": {
-    "@types/node": "^20.12.11",
+    "@types/node": "^20.12.12",
     "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"

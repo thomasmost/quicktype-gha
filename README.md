@@ -2,7 +2,22 @@
 
 A GitHub Action for generating type bindings from JSON schema files
 
+## Inputs
+
+### `source-file`
+
+Schema JSON file to generate type bindings from.
+
+### `out-langs`
+
+Comma-separated list of language extensions to generate bindings for
+
+### `out-dir` (optional)
+
+Directory to output generated bindings to
+
 ## Example Usage
+
 You can use this action to generate artifacts with the type bindings in your preferred languages.
 
 For example, you might design a workflow to generate bindings for both TypeScript and Rust, e.g.

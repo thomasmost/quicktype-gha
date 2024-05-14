@@ -29,6 +29,7 @@ export async function run(): Promise<void> {
     // Fetch the value of the input 'who-to-greet' specified in action.yml
     const sourceFile = core.getInput("source-file");
     const outLang = core.getInput("out-langs");
+    let outDir = core.getInput("out-dir");
 
     const outputLangs = outLang.split(",");
     console.log("outputLangs: ", outputLangs);
@@ -40,10 +41,15 @@ export async function run(): Promise<void> {
       throw "Invalid sourcefile";
     }
 
+    // if does not end with / add it
+    if (!outDir.endsWith("/")) {
+      outDir += "/";
+    }
+
     for (const lang of outputLangs) {
       console.log("Generating types for", sourceFile, "using lang: ", lang);
       let data = await quicktypeJSONSchema(name, lang, content);
-      console.log("Writing file: ", `${name}.${lang}`);
+      console.log("Writing file: ", `${outDir}${name}.${lang}`);
       fs.writeFileSync(`${name}.${lang}`, data.lines.join("\n"));
     }
 

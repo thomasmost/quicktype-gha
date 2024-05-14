@@ -13,6 +13,10 @@ inputs:
   out-langs:
     description: "a comma separates list of output langs to generate"
     required: true
+  out-dir:
+    description: "the directory to output the generated code"
+    required: false
+    default: "."
 
 runs:
   using: "node20"
