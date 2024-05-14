@@ -3,7 +3,7 @@ import { quicktype, InputData, JSONSchemaInput } from "quicktype-core";
 
 import * as fs from "fs";
 
-async function quicktypeJSONSchema(name: string, lang: string, schema: string) {
+async function quicktypeJSONSchema(name: string, lang: string, schema: string, noJsonSchema: boolean = false) {
   const schemaInput = new JSONSchemaInput(undefined);
   await schemaInput.addSource({ name, schema });
 
@@ -14,8 +14,9 @@ async function quicktypeJSONSchema(name: string, lang: string, schema: string) {
     inputData,
     lang,
     rendererOptions: {
-      justTypes: "true",
-      acronymStyle: "original",
+      "schema": noJsonSchema ? "true" : false,
+      "just-types": "true",
+      "acronym-style": "original",
     },
   });
 }
@@ -30,6 +31,8 @@ export async function run(): Promise<void> {
     const sourceFile = core.getInput("source-file");
     const outLang = core.getInput("out-langs");
     let outDir = core.getInput("out-dir");
+
+    const noJsonSchema = core.getInput("no-json-schema") === "true";
 
     const outputLangs = outLang.split(",");
     console.log("outputLangs: ", outputLangs);
@@ -48,7 +51,7 @@ export async function run(): Promise<void> {
 
     for (const lang of outputLangs) {
       console.log("Generating types for", sourceFile, "using lang: ", lang);
-      let data = await quicktypeJSONSchema(name, lang, content);
+      let data = await quicktypeJSONSchema(name, lang, content, noJsonSchema);
       console.log("Writing file: ", `${outDir}${name}.${lang}`);
       fs.writeFileSync(`${name}.${lang}`, data.lines.join("\n"));
     }

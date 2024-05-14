@@ -17,6 +17,10 @@ inputs:
     description: "the directory to output the generated code"
     required: false
     default: "."
+  no-json-schema:
+    description: "generate types from raw json, rather than a json-schema definition"
+    required: false
+    default: false
 
 runs:
   using: "node20"
