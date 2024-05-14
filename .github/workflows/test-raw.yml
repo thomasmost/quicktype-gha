@@ -1,0 +1,21 @@
+name: Test Raw Json
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Test Local Action
+        uses: ./
+        with:
+          source-file: test/test.schema.json
+          out-langs: ts,rs
+          no-json-schema: true
+      - name: Upload files
+        uses: actions/upload-artifact@v4
+        with:
+          name: bindings
+          path: |
+            ./test.ts
+            ./test.rs
